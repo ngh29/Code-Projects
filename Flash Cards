@@ -1,0 +1,38 @@
+import random
+
+def add_cards():
+    choice = ""
+    stack = {}
+    while(choice != "q"):
+        flash_key = input("Enter a term for the front of your flashcard:\n")
+        flash_definiion = input("Enter a definition for the back of your flashcard:\n")
+        choice = input("To continue, enter any key but 'q'. To quit, enter 'q'.\n")
+        stack[flash_key] = flash_definiion
+    return stack
+
+def quiz_user(stack):
+
+    choice = ""
+    right_answers = 0
+    wrong_answers = 0
+    while(choice != "q"):
+        term, definition = random.choice(list(stack.items()))
+        user_answer = input(f"what is the definition for {term}?")
+        if definition.lower() == user_answer.lower():
+            print("Correct!")
+            right_answers += 1
+        else:
+            print("Incorrect.")
+            wrong_answers += 1
+        choice = input("To continue, enter any key but 'q'. To quit, enter 'q'. \n")
+    answers = [right_answers, wrong_answers]
+    return answers
+
+stack = add_cards()
+answers = quiz_user(stack)
+print(f'{answers[0]} correct answers and {answers[1]} incorrect answers.')
+
+
+
+
+
